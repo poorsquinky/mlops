@@ -14,6 +14,12 @@ services:
       - ./jupyter/overrides.json:/opt/conda/share/jupyter/lab/settings/overrides.json
     environment:
       - JUPYTER_TOKEN=12345
+    devices:
+      - /dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools
+      - /dev/nvidia-modeset
+      - /dev/nvidiactl
+      - /dev/nvidia0
     deploy:
       resources:
         reservations:
