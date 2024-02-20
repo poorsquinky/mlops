@@ -7,7 +7,7 @@ up: run
 run: build
 	docker compose up
 
-build: docker-compose.yaml jupyterlab.Dockerfile
+build: docker-compose.yaml jupyter/Dockerfile
 	docker compose build
 
 down:

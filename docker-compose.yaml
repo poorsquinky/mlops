@@ -5,11 +5,22 @@ services:
     container_name: jupyter
     build:
       context: .
-      dockerfile: jupyterlab.Dockerfile
+      dockerfile: jupyter/Dockerfile
     restart: unless-stopped
     ports:
       - 0.0.0.0:9001:9001
     volumes:
-      - ./notebooks:/notebooks
+      - ./jupyter/notebooks:/notebooks
+      - ./jupyter/overrides.json:/opt/conda/share/jupyter/lab/settings/overrides.json
+    environment:
+      - JUPYTER_TOKEN=12345
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities:
+                - gpu
 
 
