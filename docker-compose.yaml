@@ -1,0 +1,15 @@
+---
+version: "3.5"
+services:
+  jupyter:
+    container_name: jupyter
+    build:
+      context: .
+      dockerfile: jupyterlab.Dockerfile
+    restart: unless-stopped
+    ports:
+      - 0.0.0.0:9001:9001
+    volumes:
+      - ./notebooks:/notebooks
+
+
