@@ -7,7 +7,7 @@ up: run
 run: build
 	docker compose up
 
-build: docker-compose.yaml jupyter/Dockerfile
+build: jupyter/Dockerfile
 	docker compose build
 
 down:

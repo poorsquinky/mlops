@@ -4,13 +4,13 @@ services:
   jupyter:
     container_name: jupyter
     build:
-      context: .
-      dockerfile: jupyter/Dockerfile
+      context: ./jupyter
+      dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - 0.0.0.0:9001:9001
     volumes:
-      - ./jupyter/notebooks:/notebooks
+      - ./notebooks:/notebooks
       - ./jupyter/overrides.json:/opt/conda/share/jupyter/lab/settings/overrides.json
     environment:
       - JUPYTER_TOKEN=12345

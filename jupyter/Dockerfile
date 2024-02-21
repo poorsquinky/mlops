@@ -1,29 +1,29 @@
 
 FROM continuumio/miniconda3
 
-# docker run -i -t -p 8888:8888 continuumio/miniconda3 /bin/bash \
-# -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir \
-# /opt/notebooks && /opt/conda/bin/jupyter notebook \
-# --notebook-dir=/opt/notebooks --ip='*' --port=8888 \
-# --no-browser --allow-root"
+RUN    conda config --quiet --add channels conda-forge
+RUN    conda config --quiet --add channels nvidia
 
+RUN conda update conda -y
 
-RUN    conda config --quiet --add channels conda-forge \
-    && conda install -c conda-forge --quiet -y jupyterlab
+RUN    conda install --quiet -y -c nvidia \
+         cudatoolkit=11.8 \
+         cudnn
 
-#RUN    conda install -c conda-forge --quiet --freeze-installed -y \
-RUN    conda install -c conda-forge --quiet -y \
+RUN conda install --quiet -y \
+        python=3.9
+
+RUN CONDA_OVERRIDE_CUDA=11.8 \
+    conda install --quiet -y -c conda-forge \
+         jupyterlab \
          pandas \
          librosa \
          matplotlib \
          pyarrow \
-         pillow=9.4.0 \
-         tensorflow \
+         pillow \
+         tensorflow-gpu=2.14 \
          keras \
     && /bin/true  # only added to make the installed package lines consistent
-
-# (NO) libtiff
-# pillow
 
 CMD /opt/conda/bin/jupyter lab \
         --notebook-dir=/notebooks \
