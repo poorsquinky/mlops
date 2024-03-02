@@ -6,12 +6,14 @@ services:
     build:
       context: ./jupyter
       dockerfile: Dockerfile
+    privileged: true
     restart: unless-stopped
     ports:
       - 0.0.0.0:9001:9001
+      - 0.0.0.0:6006:6006 # for TensorBoard
     volumes:
       - ./notebooks:/notebooks
-      - ./jupyter/overrides.json:/opt/conda/share/jupyter/lab/settings/overrides.json
+      - ./jupyter/overrides.json:/usr/local/share/jupyter/lab/settings/overrides.json
     environment:
       - JUPYTER_TOKEN=12345
     devices:
