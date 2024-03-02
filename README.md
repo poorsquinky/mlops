@@ -1,5 +1,13 @@
 
-Right now this is just a scratchpad.  I'm converting my messy ML lab environment to something with better MLOps standards
+#MLOps
+
+I have an ML lab environment at home that I'm converting to something with better MLOps standards
+
+## WORK IN PROGRESS
+
+Insert tacky animated gif of a construction worker here
+
+## Goals
 
 Broadly, the goals are:
 - Local dev environment that's as similar as possible to production
