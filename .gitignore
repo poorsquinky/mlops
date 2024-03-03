@@ -1,3 +1,4 @@
 notebooks
 .*.sw*
 cuda.deb
+feast/repo
